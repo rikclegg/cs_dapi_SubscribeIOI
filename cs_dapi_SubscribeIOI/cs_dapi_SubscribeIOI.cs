@@ -112,7 +112,7 @@ namespace com.bloomberg.ioi.samples
                 switch (evt.Type)
                 {
                     case Event.EventType.ADMIN:
-                        processSessionEvent(evt, session);
+                        processAdminEvent(evt, session);
                         break;
                     case Event.EventType.SESSION_STATUS:
                         processSessionEvent(evt, session);
@@ -134,6 +134,23 @@ namespace com.bloomberg.ioi.samples
             catch (Exception e)
             {
                 System.Console.Error.WriteLine(e);
+            }
+        }
+
+        private void processAdminEvent(Event evt, Session session)
+        {
+            System.Console.WriteLine("Processing " + evt.Type);
+
+            foreach (Message msg in evt)
+            {
+                if (msg.MessageType.Equals(SLOW_CONSUMER_WARNING))
+                {
+                    System.Console.Error.WriteLine("Warning: Entered Slow Consumer status");
+                }
+                else if (msg.MessageType.Equals(SLOW_CONSUMER_WARNING_CLEARED))
+                {
+                    System.Console.WriteLine("Slow consumer status cleared");
+                }
             }
         }
 
@@ -217,7 +234,7 @@ namespace com.bloomberg.ioi.samples
 
         private void processSubscriptionDataEvent(Event evt, Session session)
         {
-            //System.Console.WriteLine("Received Event: " + evt.Type);
+            System.Console.WriteLine("Received Event: " + evt.Type);
 
             foreach (Message msg in evt)
             {
