@@ -40,7 +40,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bloomberglp.Blpapi">
+    <Reference Include="Bloomberglp.Blpapi, Version=3.11.1.1, Culture=neutral, PublicKeyToken=ec3efa8c033c2bc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
     </Reference>
   </ItemGroup>
